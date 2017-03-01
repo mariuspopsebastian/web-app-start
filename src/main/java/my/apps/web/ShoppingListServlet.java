@@ -30,7 +30,10 @@ public class ShoppingListServlet extends HttpServlet {
 
     private void listAction(HttpServletRequest request, HttpServletResponse response) {
         String jsonResponse = "[\n" +
-                "  {\"nume\": \"Nimic\", \"cantitate\": -1}\n" +
+                "  {\"nume\": \"Paine\", \"cantitate\": 1},\n" +
+                "  {\"nume\": \"Suc\", \"cantitate\": 3},\n" +
+                "  {\"nume\": \"Mere\", \"cantitate\": 10},\n" +
+                "  {\"nume\": \"Pasta de dinti\", \"cantitate\": 2}\n" +
                 "]";
         returnJsonResponse(response, jsonResponse);
     }
