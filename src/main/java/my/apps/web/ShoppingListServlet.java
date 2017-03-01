@@ -1,5 +1,7 @@
 package my.apps.web;
 
+import com.oracle.javafx.jmx.json.JSONDocument;
+
 import javax.json.Json;
 import javax.json.JsonArrayBuilder;
 import javax.servlet.ServletException;
@@ -9,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
+import java.util.StringJoiner;
 
 @WebServlet("/shoppingList")
 public class ShoppingListServlet extends HttpServlet {
@@ -37,6 +41,9 @@ public class ShoppingListServlet extends HttpServlet {
 
     private void addAction(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("Adding a new shopping item");
+        String produs = request.getParameter("produs");
+        String cantitate = request.getParameter("cantitate");
+
     }
 
     private void listAction(HttpServletRequest request, HttpServletResponse response) {
