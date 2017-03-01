@@ -50,6 +50,12 @@ public class ShoppingListServlet extends HttpServlet {
         shoppingList[index] = new ShoppingItem(produs, cantitate);
         index++;
 
+        try {
+            response.sendRedirect("/shopping-list.html");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     private void listAction(HttpServletRequest request, HttpServletResponse response) {
