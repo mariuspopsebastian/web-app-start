@@ -17,7 +17,7 @@ function showList(shoppingList) {
     document.getElementsByTagName('tbody')[0].innerHTML = lista;
 }
 
-$.ajax('js/mocks/shopping-list.json').success(function(shoppingList){
+$.ajax('/shoppingList?action=list').success(function(shoppingList){
     console.info(shoppingList);
     showList(shoppingList);
 });
