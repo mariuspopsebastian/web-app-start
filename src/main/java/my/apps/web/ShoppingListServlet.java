@@ -20,6 +20,9 @@ public class ShoppingListServlet extends HttpServlet {
     private int counter;
     private static final String LIST_ACTION = "list";
 
+    private ShoppingItem[] shoppingList = new ShoppingItem[5];
+    private int index = 0;
+
     @Override
     public void service(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("my shopping list service called now.");
@@ -44,19 +47,14 @@ public class ShoppingListServlet extends HttpServlet {
         String produs = request.getParameter("produs");
         String cantitate = request.getParameter("cantitate");
 
-        new ShoppingItem(produs, cantitate);
+        shoppingList[index] = new ShoppingItem(produs, cantitate);
+        index++;
 
     }
 
     private void listAction(HttpServletRequest request, HttpServletResponse response) {
-        ShoppingItem[] shoppingList = {
-                new ShoppingItem("Paine", "1"),
-                new ShoppingItem("Suc", "3"),
-                new ShoppingItem("Mere", "10"),
-                new ShoppingItem("Pasta de dinti", "2")
-        };
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
-        for (int i = 0; i < shoppingList.length; i++) {
+        for (int i = 0; i < index; i++) {
             ShoppingItem item = shoppingList[i];
             arrayBuilder.add(Json.createObjectBuilder()
                     .add("nume", item.getNume())
