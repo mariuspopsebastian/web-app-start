@@ -33,9 +33,14 @@ public class ShoppingListServlet extends HttpServlet {
 
         if (action.equals(LIST_ACTION)) {
             listAction(request, response);
+        } else if (action.equals("add")) {
+            addAction(request, response);
         }
-
         System.out.println("I was used " + counter + " times!");
+    }
+
+    private void addAction(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("Adding a new shopping item");
     }
 
     private void listAction(HttpServletRequest request, HttpServletResponse response) {
