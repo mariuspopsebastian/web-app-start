@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Arrays;
+import java.util.StringJoiner;
 
 @WebServlet("/shoppingList")
 public class ShoppingListServlet extends HttpServlet {
@@ -36,12 +37,12 @@ public class ShoppingListServlet extends HttpServlet {
                 new ShoppingItem("Mere", "10"),
                 new ShoppingItem("Pasta de dinti", "2")
         };
-        String jsonResponse = "[";
+        StringJoiner stringJoiner = new StringJoiner(",");
         for (int i = 0; i < shoppingList.length; i++) {
             ShoppingItem item = shoppingList[i];
-            jsonResponse += "{\"nume\":\"" + item.getNume() + "\",\"cantitate\":" + item.getCantitate() + "}";
+            stringJoiner.add("{\"nume\":\"" + item.getNume() + "\",\"cantitate\":" + item.getCantitate() + "}");
         }
-        returnJsonResponse(response, jsonResponse);
+        returnJsonResponse(response, "[" + stringJoiner.toString() + "]");
     }
 
     @Override
