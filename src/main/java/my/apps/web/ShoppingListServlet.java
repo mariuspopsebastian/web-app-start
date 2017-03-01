@@ -26,8 +26,12 @@ public class ShoppingListServlet extends HttpServlet {
 
         String action = request.getParameter("action");
         counter++;
+        if(action == null) {
+            System.out.println("Null action not supported");
+            return;
+        }
 
-        if (action != null && action.equals(LIST_ACTION)) {
+        if (action.equals(LIST_ACTION)) {
             listAction(request, response);
         }
 
