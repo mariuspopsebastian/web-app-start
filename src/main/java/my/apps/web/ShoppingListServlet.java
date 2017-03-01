@@ -1,5 +1,9 @@
 package my.apps.web;
 
+import com.oracle.javafx.jmx.json.JSONDocument;
+
+import javax.json.Json;
+import javax.json.JsonArrayBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,12 +41,16 @@ public class ShoppingListServlet extends HttpServlet {
                 new ShoppingItem("Mere", "10"),
                 new ShoppingItem("Pasta de dinti", "2")
         };
-        StringJoiner stringJoiner = new StringJoiner(",");
+        JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
         for (int i = 0; i < shoppingList.length; i++) {
             ShoppingItem item = shoppingList[i];
-            stringJoiner.add("{\"nume\":\"" + item.getNume() + "\",\"cantitate\":" + item.getCantitate() + "}");
+            arrayBuilder.add(Json.createObjectBuilder()
+                    .add("nume", item.getNume())
+                    .add("cantitate", item.getCantitate())
+                    .build()
+            );
         }
-        returnJsonResponse(response, "[" + stringJoiner.toString() + "]");
+        returnJsonResponse(response, arrayBuilder.build().toString());
     }
 
     @Override
