@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Arrays;
 
 @WebServlet("/shoppingList")
 public class ShoppingListServlet extends HttpServlet {
@@ -29,12 +30,17 @@ public class ShoppingListServlet extends HttpServlet {
     }
 
     private void listAction(HttpServletRequest request, HttpServletResponse response) {
-        String jsonResponse = "[\n" +
-                "  {\"nume\": \"Paine\", \"cantitate\": 1},\n" +
-                "  {\"nume\": \"Suc\", \"cantitate\": 3},\n" +
-                "  {\"nume\": \"Mere\", \"cantitate\": 10},\n" +
-                "  {\"nume\": \"Pasta de dinti\", \"cantitate\": 2}\n" +
-                "]";
+        ShoppingItem[] shoppingList = {
+                new ShoppingItem("Paine", "1"),
+                new ShoppingItem("Suc", "3"),
+                new ShoppingItem("Mere", "10"),
+                new ShoppingItem("Pasta de dinti", "2")
+        };
+        String jsonResponse = "[";
+        for (int i = 0; i < shoppingList.length; i++) {
+            ShoppingItem item = shoppingList[i];
+            jsonResponse += "{\"nume\":\"" + item.getNume() + "\",\"cantitate\":" + item.getCantitate() + "}";
+        }
         returnJsonResponse(response, jsonResponse);
     }
 
