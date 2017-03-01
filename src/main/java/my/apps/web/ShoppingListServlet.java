@@ -44,6 +44,8 @@ public class ShoppingListServlet extends HttpServlet {
         String produs = request.getParameter("produs");
         String cantitate = request.getParameter("cantitate");
 
+        new ShoppingItem(produs, cantitate);
+
     }
 
     private void listAction(HttpServletRequest request, HttpServletResponse response) {
