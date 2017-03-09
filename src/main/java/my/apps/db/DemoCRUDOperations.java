@@ -16,7 +16,7 @@ import java.sql.*;
 public class DemoCRUDOperations {
 
     // 1. define connection params to db
-    final static String URL = "jdbc:postgresql://IP:5432/test";
+    final static String URL = "jdbc:postgresql://54.93.65.5:5432/Auto2_MariusPop";
     final static String USERNAME = "fasttrackit_dev";
     final static String PASSWORD = "fasttrackit_dev";
 
