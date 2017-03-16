@@ -27,7 +27,7 @@ public class DemoCRUDOperations {
         try {
             //demo CRUD operations
     //        demoCreate();
-            demoRead();
+            readShoppingItems();
       //      demoUpdate();
       //      demoDelete();
 
@@ -39,7 +39,7 @@ public class DemoCRUDOperations {
 
     }
 
-    private static void demoCreate() throws SQLException, ClassNotFoundException {
+    public static void writeShoppingItem(Item item) throws SQLException, ClassNotFoundException {
 
         // 1. load the driver
         Class.forName("org.postgresql.Driver");
@@ -48,20 +48,21 @@ public class DemoCRUDOperations {
         Connection conn = DriverManager.getConnection(URL, USERNAME, PASSWORD);
 
         // 3. create a query statement
-        PreparedStatement pSt = conn.prepareStatement("INSERT INTO socialuser (username, PASSWORD) VALUES (?,?)");
-        pSt.setString(1, "george");
-        pSt.setString(2, "password1");
+        PreparedStatement pSt = conn.prepareStatement("INSERT INTO shoppingItem (nume, cantitate) VALUES (?,?)");
+        pSt.setString(1, item.getNume());
+        pSt.setInt(2, item.getCantitate());
 
         // 4. execute a prepared statement
         int rowsInserted = pSt.executeUpdate();
         System.out.println("Inserted " + rowsInserted + " rows.");
+
 
         // 5. close the objects
         pSt.close();
         conn.close();
     }
 
-    private static void demoRead() throws ClassNotFoundException, SQLException {
+    public static List<Item>  readShoppingItems() throws ClassNotFoundException, SQLException {
 
         // 1. load the driver
         Class.forName("org.postgresql.Driver");
@@ -91,6 +92,7 @@ public class DemoCRUDOperations {
         rs.close();
         st.close();
         conn.close();
+        return items;
     }
 
     private static void demoUpdate() throws ClassNotFoundException, SQLException {

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +48,13 @@ public class ShoppingListServlet extends HttpServlet {
 
         Item itemulNou = new Item(produs, Integer.parseInt(cantitate));
 
+        try {
+            DemoCRUDOperations.writeShoppingItem(itemulNou);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
         items.add(itemulNou);
 
         try {
@@ -58,6 +66,18 @@ public class ShoppingListServlet extends HttpServlet {
 
     private void listAction(HttpServletRequest request, HttpServletResponse response) {
         String jsonResponse = "[";
+        List<Item> items = new ArrayList<>();
+        try {
+            items = DemoCRUDOperations.readShoppingItems();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+            items = new ArrayList<>();
+            items.add(new Item("Eroare de clasa" + e.getMessage(), -789452));
+        } catch (SQLException e) {
+            e.printStackTrace();
+            items = new ArrayList<>();
+            items.add(new Item("Eroare de sql" + e.getMessage(), -5632));
+        }
         for(int i= 0 ; i< items.size() ; i++) {
             String nume = items.get(i).getNume();
             int cantitate = items.get(i).getCantitate();
