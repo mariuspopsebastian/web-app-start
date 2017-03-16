@@ -45,7 +45,7 @@ public class ShoppingListServlet extends HttpServlet {
         String produs = request.getParameter("produs");
         String cantitate = request.getParameter("cantitate");
 
-        Item itemulNou = new Item(produs, cantitate);
+        Item itemulNou = new Item(produs, Integer.parseInt(cantitate));
 
         items.add(itemulNou);
 
@@ -60,7 +60,7 @@ public class ShoppingListServlet extends HttpServlet {
         String jsonResponse = "[";
         for(int i= 0 ; i< items.size() ; i++) {
             String nume = items.get(i).getNume();
-            String cantitate = items.get(i).getCantitate();
+            int cantitate = items.get(i).getCantitate();
             String element = "{\"nume\": \"" + nume + "\", \"cantitate\": " + cantitate + "}";
             jsonResponse += element;
             if(i < items.size() - 1) {

@@ -6,9 +6,9 @@ package my.apps.web;
  */
 public class Item {
     private String nume;
-    private String cantitate;
+    private int cantitate;
 
-    public Item(String nume, String cantitate) {
+    public Item(String nume, int cantitate) {
         this.nume = nume;
         this.cantitate = cantitate;
     }
@@ -17,7 +17,7 @@ public class Item {
         return nume;
     }
 
-    public String getCantitate() {
+    public int getCantitate() {
         return cantitate;
     }
 }

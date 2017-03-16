@@ -79,12 +79,12 @@ public class DemoCRUDOperations {
         List<Item> items =  new ArrayList<>();
         while (rs.next()) {
             String nume = rs.getString("nume");
-            String cantitate = rs.getString("cantitate");
+            int cantitate = rs.getInt("cantitate");
             Item item = new Item(nume, cantitate);
             items.add(item);
             System.out.print(rs.getString("nume").trim());
             System.out.print("---");
-            System.out.println(rs.getString("cantitate").trim());
+            System.out.println(rs.getInt("cantitate"));
         }
 
         // 6. close the objects
